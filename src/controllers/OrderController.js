@@ -1,4 +1,4 @@
-const { createOrderData, getOrderDetailsData, cancelOrderData } = require('../services/OrderService');
+const { createOrderData, getOrderDetailsData, cancelOrderData, getAllOrderHistoryData } = require('../services/OrderService');
 
 const createOrder = async (req, res) => {
     try {
@@ -49,9 +49,18 @@ const cancelOrder = async (req, res) => {
     }
 }
 
+const getAllOrderHistory = async (req, res) => {
+    try {
+        const response = await getAllOrderHistoryData();
+        return res.status(200).json(response);
+    } catch (err) {
+        return res.status(404).send(err.message);
+    }
+}
 
 module.exports = {
     createOrder,
     getOrderDetails,
-    cancelOrder
+    cancelOrder,
+    getAllOrderHistory
 };

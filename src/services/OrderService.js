@@ -166,8 +166,26 @@ const cancelOrderData = (orderId) => {
     });
 };
 
+const getAllOrderHistoryData = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const allOrderHistory = await Order.find().sort({ createdAt: -1 });
+
+            resolve({
+                status: 'OK',
+                message: 'Get all order history success',
+                data: allOrderHistory
+            });
+        } catch (e) {
+            reject(e);
+        }
+    }
+    )
+};
+
 module.exports = {
     createOrderData,
     getOrderDetailsData,
-    cancelOrderData
+    cancelOrderData,
+    getAllOrderHistoryData
 };
