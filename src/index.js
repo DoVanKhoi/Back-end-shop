@@ -8,7 +8,10 @@ const cookieParser = require('cookie-parser');
 const app = express();
 
 // config cors and cookie
-app.use(cors());
+app.use(cors({
+    origin: "*",
+    credentials: true
+}));
 app.use(cookieParser());
 
 // config request body data
