@@ -8,7 +8,9 @@ const cookieParser = require('cookie-parser');
 const app = express();
 
 // config cors and cookie
-app.use(cors());
+app.use(cors({
+    origin: "http://localhost:3000",
+}));
 app.use(cookieParser());
 
 // config request body data
@@ -25,5 +27,5 @@ connectDB();
 routes(app);
 
 app.listen(port, hostname, () => {
-    // console.log(`Example app listening on port ${port}`)
+    console.log(`Example app listening on port ${port}`)
 })
