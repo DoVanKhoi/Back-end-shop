@@ -9,8 +9,7 @@ const app = express();
 
 // config cors and cookie
 app.use(cors({
-    origin: "*",
-    credentials: true
+    origin: "http://localhost:3000",
 }));
 app.use(cookieParser());
 
