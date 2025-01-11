@@ -183,9 +183,35 @@ const getAllOrderHistoryData = () => {
     )
 };
 
+const updateOrderData = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const checkOrder = await Order.findById({ _id: id });
+            if (!checkOrder) {
+                return resolve({
+                    status: 'ERR',
+                    message: 'Order not found',
+                });
+            }
+
+            const updatedOrder = await Order.findByIdAndUpdate(id, { isPaid: true, isDelivered: true, paidAt: Date.now() }, { new: true });
+
+            resolve({
+                status: 'OK',
+                message: 'Update order success',
+                data: updatedOrder
+            });
+        } catch (e) {
+            reject(e);
+        }
+    })
+};
+
+
 module.exports = {
     createOrderData,
     getOrderDetailsData,
     cancelOrderData,
-    getAllOrderHistoryData
+    getAllOrderHistoryData,
+    updateOrderData
 };
