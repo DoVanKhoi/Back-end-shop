@@ -9,7 +9,7 @@ const app = express();
 
 // config cors and cookie
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: process.env.URL_FRONTEND,
 }));
 app.use(cookieParser());
 
